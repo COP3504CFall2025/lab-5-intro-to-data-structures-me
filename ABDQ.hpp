@@ -21,7 +21,7 @@ private:
             capacity_ = 1;
         }
 
-        int oldCapacity = capacity_;
+        size_t oldCapacity = capacity_;
 
         capacity_ *= SCALE_FACTOR;
         T* newArr = new T[capacity_];
@@ -66,7 +66,7 @@ public:
         }
 
         for (size_t i = 0; i < size_; ++i) {
-            newArr[i] = data_[(front_ + i) % capacity_];
+            data_[i] = other.data_[(front_ + i) % capacity_];
         }
     }
 
@@ -102,7 +102,7 @@ public:
         
         delete[] data_;
         for (size_t i = 0; i < size_; ++i) {
-            newArr[i] = other.newArr[(front_ + i) % capacity_];
+            newArr[i] = other.data_[(other.front_ + i) % other.capacity_];
         }
 
         data_ = newArr;
@@ -162,8 +162,8 @@ public:
             addCapacity();
         }
 
-        back_ = (back_ + 1) % capacity_;
         data_[back_] = item;
+        back_ = (back_ + 1) % capacity_;
         size_++;
     }
 
