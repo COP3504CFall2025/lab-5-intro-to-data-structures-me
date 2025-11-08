@@ -182,9 +182,11 @@ public:
 			return *this;
 		}
 
+        clear();
+
 		count = rhs.count;
 
-		Node<T>* currNode = rhs.getHead();
+		const Node<T>* currNode = rhs.getHead();
 		while (currNode != nullptr) {
 			addTail(currNode->data);
 			currNode = currNode->next;
@@ -217,7 +219,7 @@ public:
 	LinkedList(const LinkedList<T>& list) {
 		count = list.count;
 
-		Node<T>* currNode = list.getHead();
+		const Node<T>* currNode = list.getHead();
 		while (currNode != nullptr) {
 			addTail(currNode->data);
 			currNode = currNode->next;
