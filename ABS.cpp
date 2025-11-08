@@ -120,7 +120,7 @@ void ABS<T>::push(const T& data) {
 template <typename T>
 T ABS<T>::peek() const {
     if (curr_size_ == 0) {
-        throw std::invalid_argument("Empty list");
+        throw std::runtime_error("Empty list");
     }
 
     return array_[curr_size_ - 1];
@@ -129,7 +129,7 @@ T ABS<T>::peek() const {
 template <typename T>
 T ABS<T>::pop() {
     if (curr_size_ == 0) {
-        throw std::invalid_argument("Empty list");
+        throw std::runtime_error("Empty list");
     }
 
     T outgoing = array_[curr_size_ - 1];

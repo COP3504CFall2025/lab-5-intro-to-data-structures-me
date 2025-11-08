@@ -13,7 +13,7 @@ void LLQ<T>::enqueue(const T& item) {
 template <typename T>
 T LLQ<T>::dequeue() {
     if (list.getHead() == nullptr) {
-        throw std::invalid_argument("Empty list");
+        throw std::runtime_error("Empty list");
     }
 
     T outgoing = *(list.getHead()->datum);
@@ -26,7 +26,7 @@ T LLQ<T>::dequeue() {
 template <typename T>
 T LLQ<T>::peek() const {
     if (list.getHead() == nullptr) {
-        throw std::invalid_argument("Empty list");
+        throw std::runtime_error("Empty list");
     }
 
     return *(list.getHead()->datum);

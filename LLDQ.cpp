@@ -19,7 +19,7 @@ void LLDQ<T>::pushBack(const T& item) {
 template <typename T>
 T LLDQ<T>::popFront() {
     if (list.getHead() == nullptr) {
-        throw std::invalid_argument("Empty list");
+        throw std::runtime_error("Empty list");
     }
 
     T outgoing = *(list.getHead()->datum);
@@ -31,7 +31,7 @@ T LLDQ<T>::popFront() {
 template <typename T>
 T LLDQ<T>::popBack() {
     if (list.getTail() == nullptr) {
-        throw std::invalid_argument("Empty list");
+        throw std::runtime_error("Empty list");
     }
 
     T outgoing = *(list.getTail()->datum);
@@ -44,7 +44,7 @@ T LLDQ<T>::popBack() {
 template <typename T>
 const T& LLDQ<T>::front() const {
     if (list.getHead() == nullptr) {
-        throw std::invalid_argument("Empty list");
+        throw std::runtime_error("Empty list");
     }
 
     return *(list.getHead()->datum);
@@ -53,7 +53,7 @@ const T& LLDQ<T>::front() const {
 template <typename T>
 const T& LLDQ<T>::back() const {
     if (list.getTail() == nullptr) {
-        throw std::invalid_argument("Empty list");
+        throw std::runtime_error("Empty list");
     }
 
     return *(list.getTail()->datum);

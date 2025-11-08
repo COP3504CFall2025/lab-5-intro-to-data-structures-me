@@ -143,7 +143,7 @@ void ABDQ<T>::pushBack(const T& item) {
 template <typename T>
 T ABDQ<T>::popFront() {
     if (size_ == 0) {
-        throw std::invalid_argument("Empty List");
+        throw std::runtime_error("Empty List");
     }
 
     T outgoing = data_[front_];
@@ -160,7 +160,7 @@ T ABDQ<T>::popFront() {
 template <typename T>
 T ABDQ<T>::popBack() {
     if (size_ == 0) {
-        throw std::invalid_argument("Empty List");
+        throw std::runtime_error("Empty List");
     }
 
     T outgoing = data_[back_];
@@ -179,7 +179,7 @@ T ABDQ<T>::popBack() {
 template <typename T>
 const T& ABDQ<T>::front() const {
     if (size_ == 0) {
-        throw std::invalid_argument("Empty List");
+        throw std::runtime_error("Empty List");
     }
 
     return data_[front_];
@@ -188,7 +188,7 @@ const T& ABDQ<T>::front() const {
 template <typename T>
 const T& ABDQ<T>::back() const {
     if (size_ == 0) {
-        throw std::invalid_argument("Empty List");
+        throw std::runtime_error("Empty List");
     }
 
     return data_[back_];

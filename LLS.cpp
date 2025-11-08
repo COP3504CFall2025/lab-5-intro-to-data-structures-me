@@ -14,7 +14,7 @@ void LLS<T>::push(const T& item) {
 template <typename T>
 T LLS<T>::pop() {
     if (list.getTail() == nullptr) {
-        throw std::invalid_argument("Empty list");
+        throw std::runtime_error("Empty list");
     }
 
     T outgoing = *(list.getTail()->datum);
@@ -27,7 +27,7 @@ T LLS<T>::pop() {
 template <typename T>
 T LLS<T>::peek() const {
     if (list.getTail() == nullptr) {
-        throw std::invalid_argument("Empty list");
+        throw std::runtime_error("Empty list");
     }
 
     return *(list.getTail()->datum);

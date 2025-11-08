@@ -120,7 +120,7 @@ void ABQ<T>::enqueue(const T& data) {
 template <typename T>
 T ABQ<T>::peek() const {
     if (curr_size_ == 0) {
-        throw std::invalid_argument("Empty list");
+        throw std::runtime_error("Empty list");
     }
 
     return array_[0];
@@ -129,7 +129,7 @@ T ABQ<T>::peek() const {
 template <typename T>
 T ABQ<T>::dequeue() {
     if (curr_size_ == 0) {
-        throw std::invalid_argument("Empty list");
+        throw std::runtime_error("Empty list");
     }
 
     T outgoing = array_[0];
