@@ -196,9 +196,9 @@ public:
 			return *this;
 		}
 
-		count = list.count;
+		count = rhs.count;
 
-		Node<T> currNode = list.getHead();
+		Node<T> currNode = rhs.getHead();
 		while (currNode != nullptr) {
 			addTail(*(currNode->data));
 			currNode = currNode->next;
