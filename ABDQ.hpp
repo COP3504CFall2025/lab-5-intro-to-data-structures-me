@@ -34,7 +34,7 @@ private:
         data_ = newArr;
 
         front_ = 0;
-        back_ = size_ - 1;
+        back_ = size_;
     }
 
 public:
@@ -94,13 +94,18 @@ public:
         front_ = other.front_;
         back_ = other.back_;
 
+        T* newArr = nullptr;
+        
         if (capacity_ > 0) {
-            data_ = new T[capacity_];
+            newArr = new T[capacity_];
+        }
+        
+        delete[] data_;
+        for (size_t i = 0; i < size_; ++i) {
+            newArr[i] = other.newArr[(front_ + i) % capacity_];
         }
 
-        for (size_t i = 0; i < size_; ++i) {
-            newArr[i] = data_[(front_ + i) % capacity_];
-        }
+        data_ = newArr;
 
         return *this;
     }
@@ -157,11 +162,7 @@ public:
             addCapacity();
         }
 
-        back_++;
-        if (back_ >= capacity_) {
-            back_ = 0;
-        }
-
+        back_ = (back_ + 1) % capacity_;
         data_[back_] = item;
         size_++;
     }
@@ -188,8 +189,7 @@ public:
             throw std::runtime_error("Empty List");
         }
 
-        T outgoing = data_[back_];
-
+        
         if (back_ == 0) {
             back_ = capacity_ - 1;
         } else {
@@ -197,7 +197,7 @@ public:
         }
 
         size_--;
-        return outgoing;
+        return data_[back_];
     }
 
     // Access
@@ -221,5 +221,4 @@ public:
     std::size_t getSize() const noexcept override {
         return size_;
     }
-
 };
