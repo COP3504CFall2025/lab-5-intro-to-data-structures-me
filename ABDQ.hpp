@@ -44,7 +44,7 @@ public:
         size_ = 0;
         front_ = 0;
         back_ = 0;
-        data_ = nullptr;
+        data_ = new T[capacity_];
     }
 
     explicit ABDQ(std::size_t capacity) {
