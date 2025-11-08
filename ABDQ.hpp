@@ -66,7 +66,7 @@ public:
         }
 
         for (size_t i = 0; i < size_; ++i) {
-            data_[i] = other.data_[i];
+            newArr[i] = data_[(front_ + i) % capacity_];
         }
     }
 
@@ -99,7 +99,7 @@ public:
         }
 
         for (size_t i = 0; i < size_; ++i) {
-            data_[i] = other.data_[i];
+            newArr[i] = data_[(front_ + i) % capacity_];
         }
 
         return *this;
