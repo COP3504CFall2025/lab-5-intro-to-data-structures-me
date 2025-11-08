@@ -101,26 +101,28 @@ public:
         for (size_t i = 0; i < size_; ++i) {
             data_[i] = other.data_[i];
         }
+
+        return *this;
     }
 
     ABDQ& operator=(ABDQ&& other) noexcept {
-        if (this == &rhs) {
+        if (this == &other) {
             return *this;
         }
 
         delete[] data_;
 
-        capacity_ = rhs.capacity_;
-        size_ = rhs.size_;
-        data_ = rhs.data_;
-        front_ = rhs.front_;
-        back_ = rhs.back_;
+        capacity_ = other.capacity_;
+        size_ = other.size_;
+        data_ = other.data_;
+        front_ = other.front_;
+        back_ = other.back_;
 
-        rhs.capacity_ = 0;
-        rhs.size_ = 0;
-        rhs.data_ = nullptr;
-        rhs.front_ = 0;
-        rhs.back_ = 0;
+        other.capacity_ = 0;
+        other.size_ = 0;
+        other.data_ = nullptr;
+        other.front_ = 0;
+        other.back_ = 0;
 
         return *this;
     }
