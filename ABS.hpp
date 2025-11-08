@@ -14,7 +14,7 @@ public:
     ABS() {
         capacity_ = 4;
         curr_size_ = 0;
-        array_ = nullptr;
+        array_ = new T[capacity_];
     }
 
     explicit ABS(const size_t capacity) {

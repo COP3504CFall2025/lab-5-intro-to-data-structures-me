@@ -1,4 +1,4 @@
-#ifdef MAIN
+// #ifdef MAIN
 
 #include "ABDQ.hpp"
 #include "ABQ.hpp"
@@ -19,7 +19,7 @@
 */
 
 int main() {
-    LLS<int> myNewList;
+    ABS<int> myNewList;
 
     myNewList.push(1);
     myNewList.push(3);
@@ -32,4 +32,4 @@ int main() {
 }
 
 
-#endif
+// #endif

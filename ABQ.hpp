@@ -36,7 +36,7 @@ public:
     ABQ() {
         capacity_ = 4;
         curr_size_ = 0;
-        array_ = nullptr;
+        array_ = new T[capacity_];
     }
 
     explicit ABQ(const size_t capacity) {
