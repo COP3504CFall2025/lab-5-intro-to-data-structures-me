@@ -1,4 +1,4 @@
-// #ifdef MAIN
+#ifdef MAIN
 
 #include "ABDQ.hpp"
 #include "ABQ.hpp"
@@ -19,17 +19,17 @@
 */
 
 int main() {
-    ABDQ<int> myNewList;
+    LLS<int> myNewList;
 
-    myNewList.pushFront(1);
-    myNewList.pushFront(3);
-    myNewList.pushBack(5);
-    std::cout << myNewList.popFront() << std::endl;
-    std::cout << myNewList.popBack() << std::endl;
+    myNewList.push(1);
+    myNewList.push(3);
+    myNewList.push(5);
+    std::cout << myNewList.pop() << std::endl;
+    std::cout << myNewList.pop() << std::endl;
     // std::cout << myNewList.popFront() << std::endl;
 
     return 0;
 }
 
 
-// #endif
+#endif

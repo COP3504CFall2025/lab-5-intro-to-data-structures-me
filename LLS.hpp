@@ -24,7 +24,7 @@ public:
             throw std::runtime_error("Empty list");
         }
 
-        T outgoing = *(list.getTail()->data);
+        T outgoing = list.getTail()->data;
         list.removeTail();
 
         return outgoing;
@@ -36,7 +36,7 @@ public:
             throw std::runtime_error("Empty list");
         }
 
-        return *(list.getTail()->data);
+        return list.getTail()->data;
     }
 
     //Getters

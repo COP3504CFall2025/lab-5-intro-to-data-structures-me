@@ -9,18 +9,14 @@ protected:
 	class Node {
 	public:
 		Node(const J& data, Node<J>* previous, Node<J>* next) {
-			data = new J(data);
+			this->data = data;
 			this->previous = previous;
 			this->next = next;
 		}
 
-		~Node() {
-			delete data;
-		}
-
 		Node<J>* previous;
 		Node<J>* next;
-		J* data;
+		J data;
 	};
 public:
 	// Behaviors
@@ -30,12 +26,7 @@ public:
 
 		while (current != nullptr) {
 			next = current->next;
-
-			if (current->data == nullptr) {
-				std::cout << "nullptr" << std::endl;
-			} else {
-				std::cout << *(current->data) << std::endl;
-			}
+            std::cout << current->data << std::endl;
 
 			current = next;
 		}
@@ -47,12 +38,7 @@ public:
 
         while (current != nullptr) {
             previous = current->previous;
-
-            if (current->data == nullptr) {
-                std::cout << "nullptr" << std::endl;
-            } else {
-                std::cout << *(current->data) << std::endl;
-            }
+            std::cout << current->data << std::endl;
 
             current = previous;
         }
@@ -200,7 +186,7 @@ public:
 
 		Node<T> currNode = rhs.getHead();
 		while (currNode != nullptr) {
-			addTail(*(currNode->data));
+			addTail(currNode->data);
 			currNode = currNode->next;
 		}
 
@@ -233,7 +219,7 @@ public:
 
 		Node<T> currNode = list.getHead();
 		while (currNode != nullptr) {
-			addTail(*(currNode->data));
+			addTail(currNode->data);
 			currNode = currNode->next;
 		}
 	}

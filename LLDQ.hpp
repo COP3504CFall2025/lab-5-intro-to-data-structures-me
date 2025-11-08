@@ -32,7 +32,7 @@ public:
             throw std::runtime_error("Empty list");
         }
 
-        T outgoing = *(list.getHead()->data);
+        T outgoing = list.getHead()->data;
         list.removeHead();
 
         return outgoing;
@@ -43,7 +43,7 @@ public:
             throw std::runtime_error("Empty list");
         }
 
-        T outgoing = *(list.getTail()->data);
+        T outgoing = list.getTail()->data;
         list.removeTail();
 
         return outgoing;
@@ -55,7 +55,7 @@ public:
             throw std::runtime_error("Empty list");
         }
 
-        return *(list.getHead()->data);
+        return list.getHead()->data;
     }
 
     const T& back() const override {
@@ -63,7 +63,7 @@ public:
             throw std::runtime_error("Empty list");
         }
 
-        return *(list.getTail()->data);
+        return list.getTail()->data;
     }
 
     // Getter

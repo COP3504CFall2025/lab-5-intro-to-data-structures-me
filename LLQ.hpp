@@ -24,7 +24,7 @@ public:
             throw std::runtime_error("Empty list");
         }
 
-        T outgoing = *(list.getHead()->data);
+        T outgoing = list.getHead()->data;
         list.removeHead();
 
         return outgoing;
@@ -36,7 +36,7 @@ public:
             throw std::runtime_error("Empty list");
         }
 
-        return *(list.getHead()->data);
+        return list.getHead()->data;
     }
 
     // Getter
