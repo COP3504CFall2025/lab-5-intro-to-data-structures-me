@@ -1,13 +1,13 @@
-#ifdef MAIN
+// #ifdef MAIN
 
-#include "ABDQ.hpp"
-#include "ABQ.hpp"
-#include "ABS.hpp"
+#include "ABDQ.cpp"
+#include "ABQ.cpp"
+#include "ABS.cpp"
 #include "Interfaces.hpp"
-#include "LinkedList.hpp"
-#include "LLDQ.hpp"
-#include "LLQ.hpp"
-#include "LLS.hpp"
+#include "LinkedList.cpp"
+#include "LLDQ.cpp"
+#include "LLQ.cpp"
+#include "LLS.cpp"
 #include <iostream>
 
 /*
@@ -19,10 +19,17 @@
 */
 
 int main() {
+    ABDQ<int> myNewList(1);
 
+    myNewList.pushFront(1);
+    myNewList.pushFront(3);
+    myNewList.pushBack(5);
+    std::cout << myNewList.popFront() << std::endl;
+    std::cout << myNewList.popBack() << std::endl;
+    std::cout << myNewList.popFront() << std::endl;
 
     return 0;
 }
 
 
-#endif
+// #endif

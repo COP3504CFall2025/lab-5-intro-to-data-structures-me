@@ -16,6 +16,8 @@ private:
 
     static constexpr std::size_t SCALE_FACTOR = 2;
 
+    void addCapacity();
+
 public:
     // Big 5
     ABDQ();
@@ -24,7 +26,7 @@ public:
     ABDQ(ABDQ&& other) noexcept;
     ABDQ& operator=(const ABDQ& other);
     ABDQ& operator=(ABDQ&& other) noexcept;
-    ~ABDQ() override;
+    ~ABDQ();
 
     // Insertion
     void pushFront(const T& item) override;

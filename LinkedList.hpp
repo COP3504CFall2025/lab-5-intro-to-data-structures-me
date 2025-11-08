@@ -2,10 +2,26 @@
 #include <iostream>
 using namespace std;
 
-
-
 template <typename T>
 class LinkedList {
+protected:
+	template <typename J>
+	class Node {
+	public:
+		Node(const J& data, Node<J>* previous, Node<J>* next) {
+			datum = new J(data);
+			this->previous = previous;
+			this->next = next;
+		}
+
+		~Node() {
+			delete datum;
+		}
+
+		Node<J>* previous;
+		Node<J>* next;
+		J* datum;
+	};
 public:
 	// Behaviors
 	void printForward() const;
@@ -13,10 +29,10 @@ public:
 
 	// Accessors
 	[[nodiscard]] unsigned int getCount() const;
-	Node* getHead();
-	const Node* getHead() const;
-	Node* getTail();
-	const Node* getTail() const;
+	Node<T>* getHead();
+	const Node<T>* getHead() const;
+	Node<T>* getTail();
+	const Node<T>* getTail() const;
 
 	// Insertion
 	void addHead(const T& data);
@@ -28,8 +44,8 @@ public:
 	void Clear();
 
 	// Operators
-	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept;
 	LinkedList<T>& operator=(const LinkedList<T>& rhs);
+	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept;
 
 	// Construction/Destruction
 	LinkedList();
@@ -39,10 +55,7 @@ public:
 
 private:
 	// Stores pointers to first and last nodes and count
-	Node* head;
-	Node* tail;
+	Node<T>* head;
+	Node<T>* tail;
 	unsigned int count;
-
 };
-
-
