@@ -79,6 +79,7 @@ public:
         }
 
         array_ = newArr;
+        return *this;
     }
 
     ABQ(ABQ&& other) noexcept {
@@ -105,6 +106,7 @@ public:
         rhs.capacity_ = 0;
         rhs.curr_size_ = 0;
         rhs.array_ = nullptr;
+        return *this;
     }
 
     ~ABQ() noexcept {

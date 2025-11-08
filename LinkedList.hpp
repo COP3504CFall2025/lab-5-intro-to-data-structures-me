@@ -200,6 +200,8 @@ public:
             return *this;
         }
 
+        clear();
+
         head = other.head;
         tail = other.tail;
         count = other.count;
@@ -207,6 +209,7 @@ public:
         other.head = nullptr;
         other.tail = nullptr;
         other.count = 0;
+        return *this;
     }
 
 	// Construction/Destruction
