@@ -71,31 +71,6 @@ public:
     }
 
     ABDQ(ABDQ&& other) noexcept {
-        if (this == &rhs) {
-            return *this;
-        }
-
-        capacity_ = rhs.capacity_;
-        size_ = rhs.size_;
-        front_ = rhs.front_;
-        back_ = rhs.back_;
-
-        T* newArr = nullptr;
-
-        if (capacity_ > 0) {
-            newArr = new T[capacity_];
-        }
-
-        delete[] data_;
-
-        for (size_t i = 0; i < size_; ++i) {
-            newArr[i] = rhs.data_[i];
-        }
-
-        data_ = newArr;
-    }
-
-    ABDQ& operator=(const ABDQ& other) {
         capacity_ = other.capacity_;
         size_ = other.size_;
         data_ = other.data_;
@@ -107,6 +82,25 @@ public:
         other.data_ = nullptr;
         other.front_ = 0;
         other.back_ = 0;
+    }
+
+    ABDQ& operator=(const ABDQ& other) {
+        if (this == &other) {
+            return *this;
+        }
+
+        capacity_ = other.capacity_;
+        size_ = other.size_;
+        front_ = other.front_;
+        back_ = other.back_;
+
+        if (capacity_ > 0) {
+            data_ = new T[capacity_];
+        }
+
+        for (size_t i = 0; i < size_; ++i) {
+            data_[i] = other.data_[i];
+        }
     }
 
     ABDQ& operator=(ABDQ&& other) noexcept {
@@ -127,6 +121,8 @@ public:
         rhs.data_ = nullptr;
         rhs.front_ = 0;
         rhs.back_ = 0;
+
+        return *this;
     }
 
     ~ABDQ() {
