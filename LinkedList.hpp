@@ -160,6 +160,7 @@ public:
             delete head;
             head = nullptr;
             tail = nullptr;
+            count = 0;
             return;
         }
 
@@ -185,6 +186,8 @@ public:
         clear();
 
         count = 0;
+        head = nullptr;
+        tail = nullptr;
 		const Node<T>* currNode = rhs.getHead();
 		while (currNode != nullptr) {
 			addTail(currNode->data);
@@ -219,6 +222,8 @@ public:
     }
 
 	LinkedList(const LinkedList<T>& list) {
+        head = nullptr;
+        tail = nullptr;
         count = 0;
 		const Node<T>* currNode = list.getHead();
 		while (currNode != nullptr) {
