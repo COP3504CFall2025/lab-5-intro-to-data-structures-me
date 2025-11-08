@@ -8,13 +8,13 @@ protected:
 	template <typename J>
 	class Node {
 	public:
-		Node(const J& data, Node<J>* previous, Node<J>* next) {
+		Node(const J& data, Node<J>* prev, Node<J>* next) {
 			this->data = data;
-			this->previous = previous;
+			this->prev = prev;
 			this->next = next;
 		}
 
-		Node<J>* previous;
+		Node<J>* prev;
 		Node<J>* next;
 		J data;
 	};
@@ -34,13 +34,13 @@ public:
 
 	void printReverse() const {
         Node<T>* current = tail;
-        Node<T>* previous = nullptr;
+        Node<T>* prev = nullptr;
 
         while (current != nullptr) {
-            previous = current->previous;
+            prev = current->prev;
             std::cout << current->data << std::endl;
 
-            current = previous;
+            current = prev;
         }
     }
 
@@ -70,7 +70,7 @@ public:
         Node<T>* newNode = new Node<T>(data, nullptr, head);
 
         if (head != nullptr) {
-            head->previous = newNode;
+            head->prev = newNode;
         }
 
         head = newNode;
@@ -117,8 +117,8 @@ public:
             head = nullptr;
         } else {
             head = head->next;
-            delete head->previous;
-            head->previous = nullptr;
+            delete head->prev;
+            head->prev = nullptr;
         }
 
         count--;
@@ -138,11 +138,11 @@ public:
             return true;
         }
 
-        if (tail->previous == nullptr) {
+        if (tail->prev == nullptr) {
             delete tail;
             tail = nullptr;
         } else {
-            tail = tail->previous;
+            tail = tail->prev;
             delete tail->next;
             tail->next = nullptr;
         }
@@ -184,7 +184,7 @@ public:
 
 		count = rhs.count;
 
-		Node<T> currNode = rhs.getHead();
+		Node<T>* currNode = rhs.getHead();
 		while (currNode != nullptr) {
 			addTail(currNode->data);
 			currNode = currNode->next;
@@ -217,7 +217,7 @@ public:
 	LinkedList(const LinkedList<T>& list) {
 		count = list.count;
 
-		Node<T> currNode = list.getHead();
+		Node<T>* currNode = list.getHead();
 		while (currNode != nullptr) {
 			addTail(currNode->data);
 			currNode = currNode->next;
