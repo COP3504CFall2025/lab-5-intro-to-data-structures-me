@@ -32,7 +32,7 @@ class ABQ : public QueueInterface<T>{
     }
 
     void tryLowerCapacity() {
-        if (curr_size_ > capacity_ / 2) {
+        if (curr_size_ >= capacity_ / 2) {
             return;
         }
 
