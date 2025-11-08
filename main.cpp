@@ -29,6 +29,8 @@ int main() {
     std::cout << myNewList.getMaxCapacity() << std::endl;
     myNewList.push(1);
     std::cout << myNewList.getMaxCapacity() << std::endl;
+    myNewList.pop();
+    std::cout << myNewList.getMaxCapacity() << std::endl;
 
     return 0;
 }
