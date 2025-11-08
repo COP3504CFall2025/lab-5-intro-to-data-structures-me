@@ -11,29 +11,129 @@ template<typename T>
 class ABS : public StackInterface<T> {
 public:
     // Big 5 + Parameterized Constructor
-    ABS();
-    explicit ABS(const size_t capacity);
-    ABS(const ABS& other);
-    ABS& operator=(const ABS& rhs);
-    ABS(ABS&& other) noexcept;
-    ABS& operator=(ABS&& rhs) noexcept;
-    ~ABS() noexcept;
+    ABS() {
+        capacity_ = 4;
+        curr_size_ = 0;
+        array_ = nullptr;
+    }
+
+    explicit ABS(const size_t capacity) {
+        capacity_ = capacity;
+        curr_size_ = 0;
+        array_ = new T[capacity];
+    }
+
+    ABS(const ABS& other) {
+        capacity_ = other.capacity_;
+        curr_size_ = other.curr_size_;
+
+        if (capacity_ > 0) {
+            array_ = new T[capacity_];
+        }
+
+        for (size_t i = 0; i < curr_size_; ++i) {
+            array_[i] = other.array_[i];
+        }
+    }
+
+    ABS& operator=(const ABS& rhs) {
+        if (this == &rhs) {
+            return *this;
+        }
+
+        capacity_ = rhs.capacity_;
+        curr_size_ = rhs.curr_size_;
+
+        T* newArr = nullptr;
+
+        if (capacity_ > 0) {
+            newArr = new T[capacity_];
+        }
+
+        delete[] array_;
+
+        for (size_t i = 0; i < curr_size_; ++i) {
+            newArr[i] = rhs.array_[i];
+        }
+
+        array_ = newArr;
+    }
+
+    ABS(ABS&& other) noexcept {
+        capacity_ = other.capacity_;
+        curr_size_ = other.curr_size_;
+        array_ = other.array_;
+
+        other.capacity_ = 0;
+        other.curr_size_ = 0;
+        other.array_ = nullptr;
+    }
+
+    ABS& operator=(ABS&& rhs) noexcept {
+        if (this == &rhs) {
+            return *this;
+        }
+
+        delete[] array_;
+
+        capacity_ = rhs.capacity_;
+        curr_size_ = rhs.curr_size_;
+        array_ = rhs.array_;
+
+        rhs.capacity_ = 0;
+        rhs.curr_size_ = 0;
+        rhs.array_ = nullptr;
+    }
+
+    ~ABS() noexcept {
+        delete[] array_;
+        curr_size_ = 0;
+        capacity_ = 0;
+    }
 
     // Get the number of items in the ABS
-    [[nodiscard]] size_t getSize() const noexcept override;
+    [[nodiscard]] size_t getSize() const noexcept override {
+        return curr_size_;
+    }
 
     // Get the max size of the ABS
-    [[nodiscard]] size_t getMaxCapacity() const noexcept;
+    [[nodiscard]] size_t getMaxCapacity() const noexcept {
+        return capacity_;
+    }
 
     // Return underlying data for the stack
-    [[nodiscard]] T* getData() const noexcept;
+    [[nodiscard]] T* getData() const noexcept {
+        return array_;
+    }
 
     // Push item onto the stack
-    void push(const T& data) override;
+    void push(const T& data) override {
+        if (curr_size_ >= capacity_) {
+            addCapacity();
+        }
 
-    T peek() const override;
+        array_[curr_size_] = data;
+        curr_size_++;
+    }
 
-    T pop() override;
+    T peek() const override {
+        if (curr_size_ == 0) {
+            throw std::runtime_error("Empty list");
+        }
+
+        return array_[curr_size_ - 1];
+    }
+
+    T pop() override {
+        if (curr_size_ == 0) {
+            throw std::runtime_error("Empty list");
+        }
+
+        T outgoing = array_[curr_size_ - 1];
+        curr_size_--;
+
+        return outgoing;
+    }
 
 private:
     size_t capacity_;
@@ -41,5 +141,19 @@ private:
     T* array_;
     static constexpr size_t scale_factor_ = 2;
 
-    void addCapacity();
+    void addCapacity() {
+        if (capacity_ == 0) {
+            capacity_ = 1;
+        }
+
+        capacity_ *= scale_factor_;
+        T* newArr = new T[capacity_];
+
+        for (size_t i = 0; i < curr_size_; ++i) {
+            newArr[i] = array_[i];
+        }
+
+        delete[] array_;
+        array_ = newArr;
+    }
 };
