@@ -184,8 +184,6 @@ public:
 
         clear();
 
-		count = rhs.count;
-
 		const Node<T>* currNode = rhs.getHead();
 		while (currNode != nullptr) {
 			addTail(currNode->data);
@@ -220,8 +218,6 @@ public:
     }
 
 	LinkedList(const LinkedList<T>& list) {
-		count = list.count;
-
 		const Node<T>* currNode = list.getHead();
 		while (currNode != nullptr) {
 			addTail(currNode->data);
