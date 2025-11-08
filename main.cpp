@@ -21,12 +21,14 @@
 int main() {
     ABS<int> myNewList;
 
+    std::cout << myNewList.getMaxCapacity() << std::endl;
+
     myNewList.push(1);
-    myNewList.push(3);
-    myNewList.push(5);
-    std::cout << myNewList.pop() << std::endl;
-    std::cout << myNewList.pop() << std::endl;
-    // std::cout << myNewList.popFront() << std::endl;
+    std::cout << myNewList.getMaxCapacity() << std::endl;
+    myNewList.push(1);
+    std::cout << myNewList.getMaxCapacity() << std::endl;
+    myNewList.push(1);
+    std::cout << myNewList.getMaxCapacity() << std::endl;
 
     return 0;
 }
