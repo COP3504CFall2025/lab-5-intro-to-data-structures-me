@@ -214,7 +214,7 @@ public:
             throw std::runtime_error("Empty List");
         }
 
-        return data_[back_];
+        return data_[(back_ + capacity_ - 1) % capacity_];
     }
 
     // Getters
