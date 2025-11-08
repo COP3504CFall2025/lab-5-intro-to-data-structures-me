@@ -31,6 +31,22 @@ class ABQ : public QueueInterface<T>{
         array_ = newArr;
     }
 
+    void tryLowerCapacity() {
+        if (curr_size_ > capacity_ / 2) {
+            return;
+        }
+
+        capacity_ /= 2;
+        T* newArr = new T[capacity_];
+
+        for (size_t i = 0; i < curr_size_; ++i) {
+            newArr[i] = array_[i];
+        }
+
+        delete[] array_;
+        array_ = newArr;
+    }
+
 public:
     // Constructors + Big 5
     ABQ() {
@@ -159,6 +175,8 @@ public:
         for (size_t i = 0; i < curr_size_; ++i) {
             array_[i] = array_[i + 1];
         }
+
+        tryLowerCapacity();
 
         return outgoing;
     }
